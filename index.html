@@ -12,19 +12,23 @@
             box-sizing: border-box;
         }
 
-        /* Body with dark hacker theme */
+        /* Body with image background + fallback animated neon */
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #0a0a0a;
+            background-image: url('bg-image.jpg'); /* Your uploaded image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: 'Courier New', Courier, monospace;
             color: #e0e0e0;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Animated neon background particles */
+        /* Fallback animated neon background if image fails */
         body::before {
             content: '';
             position: absolute;
@@ -37,24 +41,38 @@
             z-index: -1;
         }
 
-        /* Pulse animation for background */
+        /* Pulse animation for fallback */
         @keyframes pulse {
             0%, 100% { opacity: 0.3; }
             50% { opacity: 0.6; }
         }
 
-        /* Glassmorphism card */
+        /* Dark overlay for entire page to boost text visibility */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark tint for contrast */
+            z-index: -1;
+        }
+
+        /* Glassmorphism card with enhanced visibility */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
             border-radius: 15px;
-            padding: 2rem;
-            max-width: 600px;
+            padding: 2.5rem;
+            max-width: 700px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 127, 0.3);
             animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         /* Fade-in animation for card */
@@ -68,14 +86,14 @@
             color: #00ff7f;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f;
+            text-shadow: 0 0 15px #00ff7f, 0 0 25px #00ff7f, 0 0 5px #000;
             animation: neonGlow 2s ease-in-out infinite;
         }
 
         /* Neon glow animation */
         @keyframes neonGlow {
-            0%, 100% { text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f; }
-            50% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+            0%, 100% { text-shadow: 0 0 15px #00ff7f, 0 0 25px #00ff7f, 0 0 5px #000; }
+            50% { text-shadow: 0 0 25px #00ff7f, 0 0 35px #00ff7f, 0 0 10px #000; }
         }
 
         /* Paragraph styling */
@@ -84,28 +102,31 @@
             line-height: 1.5;
             color: #d0d0d0;
             margin-bottom: 2rem;
+            text-shadow: 0 0 5px #000;
         }
 
-        /* Button with hover effect */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            border: 2px solid #9b59b6;
-            color: #9b59b6;
-            font-size: 1rem;
-            text-decoration: none;
+        /* Project list styling (neon bullets) */
+        #project-list {
+            list-style: none;
+            margin: 2rem 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        #project-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.5rem 0;
+            padding: 0.8rem;
             border-radius: 5px;
+            border-left: 3px solid #00ff7f;
+            color: #e0e0e0;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .btn:hover {
-            background: #9b59b6;
-            color: #fff;
-            box-shadow: 0 0 15px #9b59b6;
-            transform: translateY(-2px);
+        #project-list li:hover {
+            background: rgba(0, 255, 127, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+            transform: translateX(5px);
         }
 
         /* Responsive adjustments */
@@ -113,14 +134,37 @@
             h1 { font-size: 2rem; }
             p { font-size: 1rem; }
             .card { padding: 1.5rem; }
+            #project-list li { padding: 0.6rem; }
         }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Hack with reason, hack for good!</h1>
-        <p>This is my code sharing site, enjoy and behave.</p>
-        <a href="https://github.com/pacosani/securtiy-things" class="btn">Explore Code</a>
+        <p>This is a listing for projects that I have completed all of the below are working code and are updated regularly, if you want access to one of these or all send me a dm. Enjoy and behave.</p>
+        
+        <h2 style="color: #00ff7f; margin-bottom: 1rem; text-shadow: 0 0 10px #00ff7f;">Project Names</h2>
+        <ul id="project-list">
+            <li>AMSI Bypass All Techniques</li>
+            <li>Advanced Reverse Shell Generator with C2 Integration</li>
+            <li>Assembly Code Obfuscator Tool</li>
+            <li>C/C++ Code Obfuscator Tool</li>
+            <li>C2 Frameworks Installation Script</li>
+            <li>Comprehensive C2 and Reverse Shell Generator with Obfuscation</li>
+            <li>Comprehensive Detection Rules for Keylogger and Data Dumper DLL's TTPs</li>
+            <li>Comprehensive Guide to C2 Frameworks and Reverse Shell Generator</li>
+            <li>Comprehensive Guide to Using the C2 and Reverse Shell Generator with Obfuscation</li>
+            <li>Comprehensive Persistence Assessment Script with Complete Cleanup</li>
+            <li>Custom Data Dumper</li>
+            <li>Generator with C2 Integration - Social Media Mediums</li>
+            <li>Generator with C2 Integration - Tor, IRC, DNS, Pastebin, WebRTC, and STEGO</li>
+            <li>JavaScript Code Obfuscator Tool</li>
+            <li>Custom Keylogger</li>
+            <li>PowerShell Obfuscator</li>
+            <li>Python Code Obfuscator Tool</li>
+            <li>Rust Code Obfuscator Tool</li>
+            <li>Reflective Code Injection</li>
+        </ul>
     </div>
 </body>
 </html>
